@@ -1,9 +1,8 @@
 import './App.css'
 
 function App() {
-  async function handleButtonClick() {
+  async function handlePost() {
     const requestData = {
-      // Your request payload
       name: "hehhehaw",
       ingredients: "hungry",
     };
@@ -15,13 +14,26 @@ function App() {
     },
   })
 }
+  async function handleDelete() {
+    const requestData = {
+      name: "eeee",
+    };
+    fetch ('http://localhost:8000/delete', {
+      method: 'DELETE',
+      body: JSON.stringify(requestData),
+      headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  }
 
   return (
     <>
-      <button onClick={() => handleButtonClick()}>Add recipe to database</button>
+      <button onClick={() => handlePost()}>Add recipe to database</button>
+      <button onClick={() => handleDelete()}>Delete 'eeee' recipe :D</button>
     </>
   )
   
-}
+  }
 
 export default App
