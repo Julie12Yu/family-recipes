@@ -10,6 +10,7 @@ postRoute.post('/post', async (req, res) => {
             ingredients: ingredients,
         });
         await newRecipe.save();
+        res.json(newRecipe);
     } catch (err) {
         console.error('error: ' + err);
         res.status(400).json({

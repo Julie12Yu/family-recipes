@@ -16,6 +16,11 @@ const PORT = env.BACKEND.PORT || 8000;
 
 // Middleware
 app.use(bodyParser.json());
+// why doink is we use CORS?
+/* CORS error ---
+ tl;dr: by default, browser cannot access url that does not match host-name
+        CORS lets us bypass that. we like cors usually, but we don't need that security b/c we're doing everything locally
+ */ 
 app.use(cors({
   origin: '*',
 }));
