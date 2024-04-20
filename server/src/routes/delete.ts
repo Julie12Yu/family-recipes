@@ -4,7 +4,7 @@ import Recipe from '../models/Recipe';
 import { doesNotMatch } from 'assert';
 
 deleteRoute.delete("/delete", async (req, res) => {
-    try{
+    try {
         const {name} = req.body;
         console.log("Handling DELETE request for /DELETE");
         const result = await Recipe.deleteOne({name: name});
@@ -14,7 +14,7 @@ deleteRoute.delete("/delete", async (req, res) => {
         console.log("Successfully deleted one document.");
         } else {
         console.log("No documents matched the query. Deleted 0 documents.");
-    }}catch (err) {
+    }} catch (err) {
         console.error('error: ' + err);
         res.status(400).json({
           message: "error"
