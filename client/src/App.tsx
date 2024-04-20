@@ -8,12 +8,8 @@ function App() {
 
   return (
     <>
-<<<<<<< HEAD
-      <MakeRecipe />
-=======
       <MakeRecipe/>
       <SignIn />
->>>>>>> 9d6243bad46946b55e61a073a2fe2eec0b36423c
     </>
   )
   
