@@ -35,3 +35,10 @@
     justify-content: center;
     align-items: center;
 }
+
+.deleteRecipe {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
