@@ -52,16 +52,17 @@ function MakeRecipe() {
     },
   })
   }
-
+//<button onClick={() => handleDelete()}>Delete 'eeee' recipe :D</button>
   return (
     <>
+      <div className="makeRecipe">
         <ul className="recipes">
             {allRecipes.map((recipe) => (
                 <li key={recipe._id}>{recipe.name}</li>
             ))}
         </ul>
         <div>
-            <form onSubmit={handlePost}> 
+            <form className="addRecipe" onSubmit={handlePost}> 
                 <label htmlFor="recipe-name">Recipe Name</label> 
                 <input 
                     id="recipe-name" // if we click on name, it auto-leads to the text box
@@ -70,8 +71,8 @@ function MakeRecipe() {
                     {setName(e.target.value)}}/>
                 <button>Add Recipe!</button>
             </form>
-            <button onClick={() => handleDelete()}>Delete 'eeee' recipe :D</button>
         </div>
+      </div>
     </>
   )
   

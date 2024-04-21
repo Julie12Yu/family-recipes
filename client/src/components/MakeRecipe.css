@@ -1,0 +1,37 @@
+.makeRecipe {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.recipes {
+    display: grid;
+    width: 600px;
+    margin: 0 auto;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    color: black;
+}
+
+.recipes li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 100px;
+    background: 1px white;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.recipes li:hover{
+    background: #eeee;
+}
+
+.addRecipe {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
