@@ -4,6 +4,12 @@
     gap: 10px;
 }
 
+.ingredient{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 .recipes {
     display: grid;
     width: 600px;
@@ -27,18 +33,4 @@
 
 .recipes li:hover{
     background: #eeee;
-}
-
-.addRecipe {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
-.deleteRecipe {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
 }

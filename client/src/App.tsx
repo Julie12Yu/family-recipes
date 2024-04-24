@@ -12,7 +12,7 @@ function App() {
   if (page == "ViewRecipes") {
     return (
       <>
-        <button onClick={() => setPage("MakeRecipe")}>New Recipe</button>
+        <button className="navbarButton" onClick={() => setPage("MakeRecipe")}>New Recipe</button>
         <ViewRecipes/>
       </>
     )
@@ -20,7 +20,7 @@ function App() {
   if (page == "MakeRecipe") {
     return (
       <>
-        <button onClick={() => setPage("ViewRecipes")}>Back</button>
+        <button className="navbarButton" onClick={() => setPage("ViewRecipes")}>Back</button>
         <MakeRecipe/>
       </>
     )
