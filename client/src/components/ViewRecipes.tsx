@@ -1,29 +1,12 @@
 import './ViewRecipes.css';
 import {useState, useEffect} from 'react';
 import {Ingredient} from '../Ingredient';
-//import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent } from '@mui/material';
 
 type TRecipe = {
     name: string;
     ingredients: Ingredient[];
     _id: string;
 }
-
-const units = [
-  'milliliter',
-  'liter',
-  'teaspoon',
-  'fluid ounce',
-  'cup',
-  'pint',
-  'quart',
-  'milligram',
-  'gram',
-  'kilogram',
-  'pound',
-  'ounce'
-];
-//const [unit, setUnit] = useState<string[]>([]);
 
 function ViewRecipes() {
     // Array destructuring!

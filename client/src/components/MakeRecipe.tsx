@@ -29,24 +29,22 @@ function MakeRecipe() {
                     <input 
                         className='input'
                         key={i}
-                        id="ingredient-name" // if we click on name, it auto-leads to the text box
-                        value={ingredientList[i].ingredient} // this allows react to have the text box show our changes
+                        id="ingredient-name"
+                        value={ingredientList[i].ingredient}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                         {handleIngredientNameChange(e, i)}}/>
                     <label htmlFor="ingredient-unit">Unit:</label> 
                     <input 
                         className='input'
                         key={i}
-                        id="ingredient-unit" // if we click on name, it auto-leads to the text box
-                        value={ingredientList[i].ingredient} // this allows react to have the text box show our changes
+                        id="ingredient-unit"
+                        value={ingredientList[i].ingredient}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                         {handleIngredientUnitChange(e, i)}}/>
                 </form>
             </ul>);
             ingredientArr.push(element);
         }
-
-
         return <ul>{ingredientArr}</ul>
     }
 
