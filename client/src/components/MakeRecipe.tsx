@@ -1,28 +1,12 @@
 import './MakeRecipe.css';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { Ingredient } from '../Ingredient';
-import { Box, FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent } from '@mui/material';
 
 type TRecipe = {
     name: string;
     ingredients: Ingredient[];
     _id: string;
 }
-
-const units = [
-  'milliliter',
-  'liter',
-  'teaspoon',
-  'fluid ounce',
-  'cup',
-  'pint',
-  'quart',
-  'milligram',
-  'gram',
-  'kilogram',
-  'pound',
-  'ounce'
-];
 
 function MakeRecipe() {
     const [ingredientList, setIngredientList] = useState<Ingredient[]>([{amount: "", unit: "", ingredient: ""}]);
@@ -31,10 +15,11 @@ function MakeRecipe() {
         const ingredientArr: JSX.Element[] = [];
         for (let i = 0; i < ingredientList.length; i++) {
             const element = (
-            <ul>
-                <form className="addIngredient" > 
+            <ul className='ingredient'>
+                <form > 
                     <label htmlFor="ingredient-amount">Amount:</label> 
                     <input 
+                        className='input'
                         key={i}
                         id="ingredient-amount" // if we click on name, it auto-leads to the text box
                         value={ingredientList[i].amount} // this allows react to have the text box show our changes
@@ -42,30 +27,21 @@ function MakeRecipe() {
                         {handleIngredientAmountChange(e, i)}}/>
                     <label htmlFor="ingredient-name">Ingredient:</label> 
                     <input 
+                        className='input'
                         key={i}
                         id="ingredient-name" // if we click on name, it auto-leads to the text box
                         value={ingredientList[i].ingredient} // this allows react to have the text box show our changes
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                         {handleIngredientNameChange(e, i)}}/>
-                    <Box sx={{ minWidth: 120 }}>                        
-                        <FormControl>
-                            <InputLabel id="demo-simple-select-label">Units</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    label="Age"
-                                >
-                                    {units.map((unit, i) => (
-                                    <MenuItem
-                                    key={i}
-                                    value={unit}
-                                    >{unit}</MenuItem>
-                                    ))}
-                                </Select>
-                        </FormControl>
-                    </Box>
+                    <label htmlFor="ingredient-unit">Unit:</label> 
+                    <input 
+                        className='input'
+                        key={i}
+                        id="ingredient-unit" // if we click on name, it auto-leads to the text box
+                        value={ingredientList[i].ingredient} // this allows react to have the text box show our changes
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                        {handleIngredientUnitChange(e, i)}}/>
                 </form>
-
             </ul>);
             ingredientArr.push(element);
         }
