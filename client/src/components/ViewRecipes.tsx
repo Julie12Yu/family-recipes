@@ -31,8 +31,8 @@ function ViewRecipes() {
   async function handlePost(e: React.FormEvent) {
     e.preventDefault();
     const requestData = { name: addName };
-    await fetch('http://localhost:8000/post', {
-      method: 'POST',
+    await fetch('http://localhost:8000/put', {
+      method: 'PUT',
       body: JSON.stringify(requestData),
       headers: { // headers let us tell a lot of things
       'Content-Type': 'application/json', //this tells what we're passing thru

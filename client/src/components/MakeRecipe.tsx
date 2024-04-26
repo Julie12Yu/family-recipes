@@ -10,7 +10,46 @@ type TRecipe = {
 
 function MakeRecipe() {
     const [ingredientList, setIngredientList] = useState<Ingredient[]>([{amount: "", unit: "", ingredient: ""}]);
+    const [name, setName] = useState("");
     //const [unit, setUnit] = useState('');
+
+    async function createName() {
+        const requestData = { name: name };
+        await fetch('http://localhost:8000/put', {
+          method: 'PUT',
+          body: JSON.stringify(requestData),
+          headers: { // headers let us tell a lot of things
+          'Content-Type': 'application/json', //this tells what we're passing thru
+        }})
+    }
+
+    async function submitRecipe() {
+        const requestData = { name: name, ingredients : ingredientList };
+        await fetch('http://localhost:8000/put', {
+          method: 'PUT',
+          body: JSON.stringify(requestData),
+          headers: { // headers let us tell a lot of things
+          'Content-Type': 'application/json', //this tells what we're passing thru
+        }})
+      }
+
+    async function handleNewIngredient(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
+        e.preventDefault();
+        const newList = [...ingredientList];
+        newList.push({amount: "", unit: "", ingredient: ""});
+        setIngredientList(newList);
+    }
+
+    async function deleteIngredient(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, i: number) {
+        e.preventDefault();
+        const newList = [...ingredientList];
+        if (i == 0 && newList.length > 1) {
+            newList.shift();
+        } else if (newList.length > 1) {
+            newList.splice(i,i);
+        }
+        setIngredientList(newList);
+    }
 
     const renderIngredients = () => {
         const ingredientArr: JSX.Element[] = [];
@@ -39,10 +78,11 @@ function MakeRecipe() {
                         className='input'
                         key={i+100}
                         id="ingredient-unit"
-                        value={ingredientList[i].ingredient}
+                        value={ingredientList[i].unit}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                         {handleIngredientUnitChange(e, i)}}/>
-                    <button onClick={(e) => {e.preventDefault(); console.log("eeeee")}}>Add Ingredient</button>
+                    <button onClick={(e) => {handleNewIngredient(e)}}>Add Ingredient</button>
+                    <button onClick={(e) => {deleteIngredient(e, i)}}>x</button>
                 </form>
             </ul>);
             ingredientArr.push(element);
@@ -72,7 +112,17 @@ function MakeRecipe() {
 
     return (
     <>
+    <form className="addRecipe"> 
+        <label htmlFor="recipe-name">Recipe Name</label> 
+        <input 
+            id="recipe-name" // if we click on name, it auto-leads to the text box
+            value={name} // this allows react to have the text box show our changes
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+            {setName(e.target.value)}}/>
+        <button onClick={(e) => {createName(); e.preventDefault();}}>Add Recipe</button>
+    </form>
     {renderIngredients()}
+    <button onClick={(e) => {submitRecipe(); e.preventDefault();}}>Submit Recipe</button>
     </>
   )
   
