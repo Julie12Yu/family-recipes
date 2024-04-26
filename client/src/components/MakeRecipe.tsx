@@ -13,15 +13,15 @@ function MakeRecipe() {
     const [name, setName] = useState("");
     //const [unit, setUnit] = useState('');
 
-    async function createName() {
-        const requestData = { name: name };
-        await fetch('http://localhost:8000/put', {
-          method: 'PUT',
-          body: JSON.stringify(requestData),
-          headers: { // headers let us tell a lot of things
-          'Content-Type': 'application/json', //this tells what we're passing thru
-        }})
-    }
+    // async function createName() {
+    //     const requestData = { name: name };
+    //     await fetch('http://localhost:8000/put', {
+    //       method: 'PUT',
+    //       body: JSON.stringify(requestData),
+    //       headers: { // headers let us tell a lot of things
+    //       'Content-Type': 'application/json', //this tells what we're passing thru
+    //     }})
+    // }
 
     async function submitRecipe() {
         const requestData = { name: name, ingredients : ingredientList };
@@ -119,10 +119,11 @@ function MakeRecipe() {
             value={name} // this allows react to have the text box show our changes
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
             {setName(e.target.value)}}/>
-        <button onClick={(e) => {createName(); e.preventDefault();}}>Add Recipe</button>
     </form>
     {renderIngredients()}
-    <button onClick={(e) => {submitRecipe(); e.preventDefault();}}>Submit Recipe</button>
+    <form>
+    <button onClick={() => {submitRecipe()}}>Submit Recipe</button>
+    </form>
     </>
   )
   
