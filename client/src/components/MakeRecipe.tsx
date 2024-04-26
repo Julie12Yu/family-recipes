@@ -103,7 +103,7 @@ function MakeRecipe() {
     </form>
     {renderIngredients()}
     <form>
-    <button onClick={() => {submitRecipe()}}>Submit Recipe</button>
+        <button onClick={() => {submitRecipe()}}>Submit Recipe</button>
     </form>
     </>
   )

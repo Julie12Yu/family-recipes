@@ -14,6 +14,7 @@
 }
 
 .recipes li {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,6 +28,14 @@
 
 .recipes li:hover{
     background: #eeee;
+}
+
+.recipes button {
+    position: absolute;
+    font-size: 10px;
+    top: 5px;
+    right: 5px;
+    background-color: salmon;
 }
 
 .addRecipe {

@@ -13,7 +13,6 @@ function ViewRecipes() {
     // stateValue, dispatcher
     const [allRecipes, setRecipes] = useState<TRecipe []>([]);
     const [addName, setName] = useState('');
-    const [removeName, elimName] = useState('');
 
   // empty dependency array: only runs when mounts and demounts
   // can't use async await
@@ -30,29 +29,30 @@ function ViewRecipes() {
 
   async function handlePost(e: React.FormEvent) {
     e.preventDefault();
-    const requestData = { name: addName };
-    await fetch('http://localhost:8000/put', {
+    const req = { name: addName };
+    const res = await fetch('http://localhost:8000/put', {
       method: 'PUT',
-      body: JSON.stringify(requestData),
+      body: JSON.stringify(req),
       headers: { // headers let us tell a lot of things
       'Content-Type': 'application/json', //this tells what we're passing thru
     }})
-    .then(handleNewPost);
+    // optimistic update
+    const recipe = await res.json();
+    setRecipes([...allRecipes, recipe]);
+    setName('');
 
-    function handleNewPost(){
-      setName('');
-    }
   }
 
-  async function handleDelete() {
-    const requestData = { name: removeName };
+  async function handleDelete(removeName: string ) {
+    const req = { name: removeName };
     fetch ('http://localhost:8000/delete', {
       method: 'DELETE',
-      body: JSON.stringify(requestData),
+      body: JSON.stringify(req),
       headers: {
       'Content-Type': 'application/json',
-    },
-  })
+      }});
+    // optimistic update
+    setRecipes(allRecipes.filter((recipe) => removeName !== recipe.name));
   }
 
   return (
@@ -60,7 +60,7 @@ function ViewRecipes() {
       <div className="makeRecipe">
         <ul className="recipes">
             {allRecipes.map((recipe) => (
-                <li key={recipe._id}>{recipe.name}</li>
+                <li key={recipe._id}><button onClick={() => {handleDelete(recipe.name)}}>x</button>{recipe.name}</li>
             ))}
         </ul>
         <div>
@@ -72,17 +72,6 @@ function ViewRecipes() {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                     {setName(e.target.value)}}/>
                 <button>Add Recipe</button>
-            </form>
-        </div>
-        <div>
-            <form className="deleteRecipe" onSubmit={handleDelete}> 
-                <label htmlFor="recipe-name">Recipe Name</label> 
-                <input 
-                    id="recipe-name" // if we click on name, it auto-leads to the text box
-                    value={removeName} // this allows react to have the text box show our changes
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                    {elimName(e.target.value)}}/>
-                <button>Delete Recipe</button>
             </form>
         </div>
       </div>
