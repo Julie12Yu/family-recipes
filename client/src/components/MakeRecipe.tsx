@@ -46,7 +46,7 @@ function MakeRecipe() {
         if (i == 0 && newList.length > 1) {
             newList.shift();
         } else if (newList.length > 1) {
-            newList.splice(i,i);
+            newList.splice(i,1);
         }
         setIngredientList(newList);
     }
