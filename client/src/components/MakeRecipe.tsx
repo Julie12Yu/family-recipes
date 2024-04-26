@@ -11,12 +11,13 @@ type TRecipe = {
 function MakeRecipe() {
     const [ingredientList, setIngredientList] = useState<Ingredient[]>([{amount: "", unit: "", ingredient: ""}]);
     //const [unit, setUnit] = useState('');
+
     const renderIngredients = () => {
         const ingredientArr: JSX.Element[] = [];
         for (let i = 0; i < ingredientList.length; i++) {
             const element = (
-            <ul className='ingredient'>
-                <form > 
+            <ul key={i}>
+                <form className='ingredient' > 
                     <label htmlFor="ingredient-amount">Amount:</label> 
                     <input 
                         className='input'
@@ -28,7 +29,7 @@ function MakeRecipe() {
                     <label htmlFor="ingredient-name">Ingredient:</label> 
                     <input 
                         className='input'
-                        key={i}
+                        key={i+10}
                         id="ingredient-name"
                         value={ingredientList[i].ingredient}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
@@ -36,16 +37,17 @@ function MakeRecipe() {
                     <label htmlFor="ingredient-unit">Unit:</label> 
                     <input 
                         className='input'
-                        key={i}
+                        key={i+100}
                         id="ingredient-unit"
                         value={ingredientList[i].ingredient}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                         {handleIngredientUnitChange(e, i)}}/>
+                    <button onClick={(e) => {e.preventDefault(); console.log("eeeee")}}>Add Ingredient</button>
                 </form>
             </ul>);
             ingredientArr.push(element);
         }
-        return <ul>{ingredientArr}</ul>
+        return <ul key={-1}>{ingredientArr}</ul>
     }
 
 
