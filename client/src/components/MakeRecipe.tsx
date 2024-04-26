@@ -2,26 +2,9 @@ import './MakeRecipe.css';
 import {useState} from 'react';
 import { Ingredient } from '../Ingredient';
 
-type TRecipe = {
-    name: string;
-    ingredients: Ingredient[];
-    _id: string;
-}
-
 function MakeRecipe() {
     const [ingredientList, setIngredientList] = useState<Ingredient[]>([{amount: "", unit: "", ingredient: ""}]);
     const [name, setName] = useState("");
-    //const [unit, setUnit] = useState('');
-
-    // async function createName() {
-    //     const requestData = { name: name };
-    //     await fetch('http://localhost:8000/put', {
-    //       method: 'PUT',
-    //       body: JSON.stringify(requestData),
-    //       headers: { // headers let us tell a lot of things
-    //       'Content-Type': 'application/json', //this tells what we're passing thru
-    //     }})
-    // }
 
     async function submitRecipe() {
         const requestData = { name: name, ingredients : ingredientList };
@@ -43,9 +26,7 @@ function MakeRecipe() {
     async function deleteIngredient(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, i: number) {
         e.preventDefault();
         const newList = [...ingredientList];
-        if (i == 0 && newList.length > 1) {
-            newList.shift();
-        } else if (newList.length > 1) {
+        if (newList.length > 1) {
             newList.splice(i,1);
         }
         setIngredientList(newList);
@@ -115,8 +96,8 @@ function MakeRecipe() {
     <form className="addRecipe"> 
         <label htmlFor="recipe-name">Recipe Name</label> 
         <input 
-            id="recipe-name" // if we click on name, it auto-leads to the text box
-            value={name} // this allows react to have the text box show our changes
+            id="recipe-name"
+            value={name}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
             {setName(e.target.value)}}/>
     </form>
