@@ -2,9 +2,16 @@
     display: inline-block;
     flex-direction: row;
     gap: 10px;
+    margin-top: 5px;
 }
 
 .input{
     margin-right: 20px;
     margin-left: 5px;
+}
+
+.x-button{
+    border-radius: 20px;
+    font-size: 10px;
+    height: 30px;
 }

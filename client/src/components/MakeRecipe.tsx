@@ -28,6 +28,8 @@ function MakeRecipe() {
         const newList = [...ingredientList];
         if (newList.length > 1) {
             newList.splice(i,1);
+        } else {
+            window.confirm("Cannot delete all ingredients!");
         }
         setIngredientList(newList);
     }
@@ -63,7 +65,7 @@ function MakeRecipe() {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                         {handleIngredientUnitChange(e, i)}}/>
                     <button onClick={(e) => {handleNewIngredient(e)}}>Add Ingredient</button>
-                    <button onClick={(e) => {deleteIngredient(e, i)}}>x</button>
+                    <button className='x-button' onClick={(e) => {deleteIngredient(e, i)}}>x</button>
                 </form>
             </ul>);
             ingredientArr.push(element);
