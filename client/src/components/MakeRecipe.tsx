@@ -1,13 +1,14 @@
 import './MakeRecipe.css';
-import {useState} from 'react';
+import {ChangeEventHandler, useState} from 'react';
 import { Ingredient } from '../Ingredient';
 
 function MakeRecipe() {
     const [ingredientList, setIngredientList] = useState<Ingredient[]>([{amount: "", unit: "", ingredient: ""}]);
     const [name, setName] = useState("");
+    const [instructions, setInstructions] = useState("");
 
     async function submitRecipe() {
-        const requestData = { name: name, ingredients : ingredientList };
+        const requestData = { name: name, ingredients : ingredientList, instructions: instructions };
         await fetch('http://localhost:8000/put', {
           method: 'PUT',
           body: JSON.stringify(requestData),
@@ -104,6 +105,19 @@ function MakeRecipe() {
             {setName(e.target.value)}}/>
     </form>
     {renderIngredients()}
+    <form className="input"> 
+        <label htmlFor="recipe-name">Instructions</label> 
+        <br/>
+        <textarea 
+            id="recipe-name"
+            value={instructions}
+            onChange={(e) => 
+            {setInstructions(e.target.value)}}
+            rows={4}
+            cols={50}
+            />
+            
+    </form>
     <form>
         <button onClick={() => {submitRecipe()}}>Submit Recipe</button>
     </form>

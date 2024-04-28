@@ -4,12 +4,13 @@ import Recipe from '../models/Recipe';
 
 putRoute.put('/put', async (req, res) => {
     try {
-        const { name, ingredients } = req.body;
+        const { name, ingredients, instructions} = req.body;
         const item = await Recipe.findOne({ name: name });
         if (!item) { //POST
             const newRecipe = new Recipe({
                 name: name,
                 ingredients: ingredients,
+                instructions: instructions,
             });
             await newRecipe.save();
             res.json(newRecipe);
@@ -17,6 +18,7 @@ putRoute.put('/put', async (req, res) => {
           const editedItem = {
             name: name,
             ingredients: ingredients,
+            instructions: instructions,
           };
           const result = await Recipe.findOneAndUpdate({ name: name }, { $set: editedItem }, { new: true });
           if (result) {
