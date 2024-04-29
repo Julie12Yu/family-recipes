@@ -2,12 +2,20 @@ import './MakeRecipe.css';
 import {ChangeEventHandler, useState} from 'react';
 import { Ingredient } from '../Ingredient';
 
-function MakeRecipe() {
+interface CallBack {
+    (): void;
+}
+interface MakeRecipeProps {
+    returnToViewRecipe: CallBack;
+}
+
+function MakeRecipe(props: MakeRecipeProps) {
     const [ingredientList, setIngredientList] = useState<Ingredient[]>([{amount: "", unit: "", ingredient: ""}]);
     const [name, setName] = useState("");
     const [instructions, setInstructions] = useState("");
 
-    async function submitRecipe() {
+    async function submitRecipe(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
+        e.preventDefault();
         const requestData = { name: name, ingredients : ingredientList, instructions: instructions };
         await fetch('http://localhost:8000/put', {
           method: 'PUT',
@@ -15,6 +23,8 @@ function MakeRecipe() {
           headers: { // headers let us tell a lot of things
           'Content-Type': 'application/json', //this tells what we're passing thru
         }})
+
+        props.returnToViewRecipe();
       }
 
     async function handleNewIngredient(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
@@ -41,6 +51,14 @@ function MakeRecipe() {
             const element = (
             <ul key={i}>
                 <form className='ingredient' > 
+                    <label htmlFor="ingredient-unit">Unit:</label> 
+                    <input 
+                        className='input'
+                        key={i+100}
+                        id="ingredient-unit"
+                        value={ingredientList[i].unit}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                        {handleIngredientUnitChange(e, i)}}/>
                     <label htmlFor="ingredient-amount">Amount:</label> 
                     <input 
                         className='input'
@@ -57,14 +75,7 @@ function MakeRecipe() {
                         value={ingredientList[i].ingredient}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                         {handleIngredientNameChange(e, i)}}/>
-                    <label htmlFor="ingredient-unit">Unit:</label> 
-                    <input 
-                        className='input'
-                        key={i+100}
-                        id="ingredient-unit"
-                        value={ingredientList[i].unit}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                        {handleIngredientUnitChange(e, i)}}/>
+                    
                     <button onClick={(e) => {handleNewIngredient(e)}}>Add Ingredient</button>
                     <button className='x-button' onClick={(e) => {deleteIngredient(e, i)}}>x</button>
                 </form>
@@ -119,7 +130,7 @@ function MakeRecipe() {
             
     </form>
     <form>
-        <button onClick={() => {submitRecipe()}}>Submit Recipe</button>
+        <button onClick={(e) => {submitRecipe(e)}}>Submit Recipe</button>
     </form>
     </>
   )
