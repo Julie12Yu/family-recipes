@@ -1,12 +1,11 @@
 import './ViewRecipes.css';
 import {useState, useEffect} from 'react';
 import {Ingredient} from '../Ingredient';
+import {Link} from "react-router-dom";
+import { deleteRecipe } from './api/deleteRecipe';
+import { editRecipe } from './api/editRecipe';
+import { TRecipe, getRecipes } from './api/getRecipes';
 
-type TRecipe = {
-    name: string;
-    ingredients: Ingredient[];
-    _id: string;
-}
 
 function ViewRecipes() {
     // Array destructuring!
@@ -18,39 +17,23 @@ function ViewRecipes() {
   // can't use async await
   useEffect(() => {
     async function fetchRecipes() {
-        const allRecipes = await fetch("http://localhost:8000/getAll")
-        .then( res => res.json())
-        .catch((e: Error) => console.log("Error: GET /getAll, " +  e.message));
+        const allRecipes = await getRecipes();
         setRecipes(allRecipes);
-        console.log(allRecipes);
     }
     fetchRecipes();
   }, []);
 
   async function handlePost(e: React.FormEvent) {
     e.preventDefault();
-    const req = { name: addName };
-    const res = await fetch('http://localhost:8000/put', {
-      method: 'PUT',
-      body: JSON.stringify(req),
-      headers: { // headers let us tell a lot of things
-      'Content-Type': 'application/json', //this tells what we're passing thru
-    }})
     // optimistic update
-    const recipe = await res.json();
+    const recipe = await editRecipe(addName);
     setRecipes([...allRecipes, recipe]);
     setName('');
 
   }
 
   async function handleDelete(removeName: string ) {
-    const req = { name: removeName };
-    fetch ('http://localhost:8000/delete', {
-      method: 'DELETE',
-      body: JSON.stringify(req),
-      headers: {
-      'Content-Type': 'application/json',
-      }});
+    await deleteRecipe(removeName);
     // optimistic update
     setRecipes(allRecipes.filter((recipe) => removeName !== recipe.name));
   }
@@ -60,7 +43,7 @@ function ViewRecipes() {
       <div className="makeRecipe">
         <ul className="recipes">
             {allRecipes.map((recipe) => (
-                <li key={recipe._id}><button onClick={() => {handleDelete(recipe.name)}}>x</button>{recipe.name}</li>
+                <li key={recipe._id}><button onClick={() => {handleDelete(recipe.name)}}>x</button><Link to={`recipes/${recipe.name}`}>{recipe.name}</Link></li>
             ))}
         </ul>
         <div>
