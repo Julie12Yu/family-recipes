@@ -5,6 +5,7 @@ export type TRecipe = {
     name: string;
     ingredients: Ingredient[];
     _id: string;
+    instructions: string;
 }
 
 export async function getRecipes(): Promise<TRecipe[]> {

@@ -1,5 +1,6 @@
 import './MakeRecipe.css';
 import {ChangeEventHandler, useState} from 'react';
+import { TRecipe, getRecipes } from './api/getRecipes';
 import { Ingredient } from '../Ingredient';
 
 interface CallBack {
@@ -9,10 +10,10 @@ interface MakeRecipeProps {
     returnToViewRecipe: CallBack;
 }
 
-function MakeRecipe(props: MakeRecipeProps) {
+function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
     const [ingredientList, setIngredientList] = useState<Ingredient[]>([{amount: "", unit: "", ingredient: ""}]);
-    const [name, setName] = useState("");
-    const [instructions, setInstructions] = useState("");
+    const [name, setName] = useState(recipe.name);
+    const [instructions, setInstructions] = useState(recipe.ingredients);
 
     async function submitRecipe(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
         e.preventDefault();
