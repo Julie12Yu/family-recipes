@@ -13,7 +13,7 @@ interface MakeRecipeProps {
 function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
     const [ingredientList, setIngredientList] = useState<Ingredient[]>([{amount: "", unit: "", ingredient: ""}]);
     const [name, setName] = useState(recipe.name);
-    const [instructions, setInstructions] = useState(recipe.ingredients);
+    const [instructions, setInstructions] = useState(recipe.instructions);
 
     async function submitRecipe(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
         e.preventDefault();
