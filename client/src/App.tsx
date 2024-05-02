@@ -4,6 +4,7 @@ import MakeRecipe from './components/MakeRecipe';
 import ViewRecipes from './components/ViewRecipes';
 //import SignIn from './components/SignIn';
 
+// preps type for callback function that allows us to swap page back, without abusing the 'button' usage that auto refreshes
 interface CallBack {
   (): void;
 }

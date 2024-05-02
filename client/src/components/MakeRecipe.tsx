@@ -3,6 +3,8 @@ import {ChangeEventHandler, useState} from 'react';
 import { TRecipe, getRecipes } from './api/getRecipes';
 import { Ingredient } from '../Ingredient';
 
+
+// preps callback function that lets us return to the ViewRecipes page
 interface CallBack {
     (): void;
 }
