@@ -4,18 +4,10 @@ import MakeRecipe from './components/MakeRecipe';
 import ViewRecipes from './components/ViewRecipes';
 //import SignIn from './components/SignIn';
 
-// preps type for callback function that allows us to swap page back, without abusing the 'button' usage that auto refreshes
-interface CallBack {
-  (): void;
-}
-
-
 type pages = "ViewRecipes" | "MakeRecipe" | "SignIn"; 
 function App() {
-  const [page, setPage] = useState("SignIn");
-  const [password, setPassword] = useState("");
-
-  
+  const [page, setPage] = useState<pages>("SignIn");
+  const [password, setPassword] = useState("");  
 
   function returnToViewRecipe() {
     setPage("ViewRecipes");
@@ -71,7 +63,6 @@ function App() {
       </>
     )
   }  
-
 }
 
 export default App
