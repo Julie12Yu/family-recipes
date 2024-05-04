@@ -1,5 +1,6 @@
 import { API_URL } from "./config";
 
+// callback function type - lets us tell us what type of function we'll pass in
 interface CallBackFunc {
   (): void;
 }
@@ -7,6 +8,7 @@ interface CallBackFunc {
 export async function handleLoginAPI(password: string, returnToViewRecipe: CallBackFunc) {
   const handleLoginResponse = (res: Response) => {
     if (res.status == 200) {
+      // lets us run the function we passed in
         returnToViewRecipe();
     } else {
         alert("Incorrect Password")

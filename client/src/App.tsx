@@ -16,6 +16,7 @@ function App() {
 
   const handleLogin : MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
+    // just passes in the callback function! does not need special typing here
     handleLoginAPI(password, returnToViewRecipe);
   }
 
