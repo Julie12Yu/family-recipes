@@ -3,7 +3,6 @@ import {useState} from 'react';
 import { TRecipe, getRecipes } from './api/getRecipes';
 import { Ingredient } from '../Ingredient';
 
-
 // preps callback function that lets us return to the ViewRecipes page
 // preps type for callback function that allows us to swap page back, without abusing the 'button' usage that auto refreshes
 interface CallBack {
@@ -42,7 +41,7 @@ function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
         e.preventDefault();
         const newList = [...ingredientList];
         if (newList.length > 1) {
-            newList.splice(i,1);
+            newList.splice(i,1); // splice allows us to remove from array b/c js :C
         } else {
             window.confirm("Cannot delete all ingredients!");
         }
@@ -110,35 +109,34 @@ function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
 
 
     return (
-    <>
-    <form className="addRecipe"> 
-        <label htmlFor="recipe-name">Recipe Name</label> 
-        <input 
-            id="recipe-name"
-            value={name}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-            {setName(e.target.value)}}/>
-    </form>
-    {renderIngredients()}
-    <form className="input"> 
-        <label htmlFor="recipe-name">Instructions</label> 
-        <br/>
-        <textarea 
-            id="recipe-name"
-            value={instructions}
-            onChange={(e) => 
-            {setInstructions(e.target.value)}}
-            rows={4}
-            cols={50}
-            />
-            
-    </form>
-    <form>
-        <button onClick={(e) => {submitRecipe(e)}}>Submit Recipe</button>
-    </form>
-    </>
-  )
-  
+        <>
+            <form className="addRecipe"> 
+                <label htmlFor="recipe-name">Recipe Name</label> 
+                <input 
+                    id="recipe-name"
+                    value={name}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                    {setName(e.target.value)}}/>
+            </form>
+            {renderIngredients()}
+            <form className="input"> 
+                <label htmlFor="recipe-name">Instructions</label> 
+                <br/>
+                <textarea 
+                    id="recipe-name"
+                    value={instructions}
+                    onChange={(e) => 
+                    {setInstructions(e.target.value)}}
+                    rows={4}
+                    cols={50}
+                    />
+                    
+            </form>
+            <form>
+                <button onClick={(e) => {submitRecipe(e)}}>Submit Recipe</button>
+            </form>
+        </>
+    )
   }
 
 export default MakeRecipe

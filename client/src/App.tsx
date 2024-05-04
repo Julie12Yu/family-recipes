@@ -2,6 +2,7 @@ import './App.css'
 import {MouseEventHandler, useState} from 'react';
 import MakeRecipe from './components/MakeRecipe';
 import ViewRecipes from './components/ViewRecipes';
+import { handleLoginAPI } from './components/api/handleLoginAPI';
 //import SignIn from './components/SignIn';
 
 type pages = "ViewRecipes" | "MakeRecipe" | "SignIn"; 
@@ -15,21 +16,7 @@ function App() {
 
   const handleLogin : MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    fetch('http://localhost:8000/login', {
-      method: 'POST',
-      body: JSON.stringify({password: password}),
-      headers: { // headers let us tell a lot of things
-      'Content-Type': 'application/json', //this tells what we're passing thru
-    }}).then(handleLoginResponse)
-    .catch((e) => {console.log(e.message)})
-  }
-
-  const handleLoginResponse = (res: Response) => {
-    if (res.status == 200) {
-      setPage("ViewRecipes");
-    } else {
-      alert("Incorrect Password")
-    }
+    handleLoginAPI(password, returnToViewRecipe);
   }
 
   if (page == "SignIn") {

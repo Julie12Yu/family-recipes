@@ -10,8 +10,8 @@ import { TRecipe, getRecipes } from './api/getRecipes';
 function ViewRecipes() {
     // Array destructuring!
     // stateValue, dispatcher
-    const [allRecipes, setRecipes] = useState<TRecipe []>([]);
-    const [addName, setName] = useState('');
+  const [allRecipes, setRecipes] = useState<TRecipe []>([]);
+  const [addName, setName] = useState('');
 
   // empty dependency array: only runs when mounts and demounts
   // can't use async await
