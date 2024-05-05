@@ -7,6 +7,7 @@ deleteRoute.delete("/delete", async (req, res) => {
         const {name} = req.body;
         console.log("Handling DELETE request for /DELETE");
         const result = await Recipe.deleteOne({name: name});
+        res.send("Successfully deleted one document.")
         /* Print a message that indicates whether the operation deleted a
         document */
         if (result.deletedCount === 1) {

@@ -7,8 +7,8 @@ import {loginRoute} from './login';
 
 // is middleware? unclear
 export const routes = express.Router();
-routes.use(putRoute);
 routes.use(deleteRoute);
 routes.use(getAllRoute);
 routes.use(getRecipeRoute);
 routes.use(loginRoute);
+routes.use(putRoute);
