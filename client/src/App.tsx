@@ -3,7 +3,6 @@ import {MouseEventHandler, useState} from 'react';
 import MakeRecipe from './components/MakeRecipe';
 import ViewRecipes from './components/ViewRecipes';
 import { handleLoginAPI } from './components/api/handleLoginAPI';
-//import SignIn from './components/SignIn';
 
 type pages = "ViewRecipes" | "MakeRecipe" | "SignIn"; 
 function App() {

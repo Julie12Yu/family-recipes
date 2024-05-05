@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import env from '../environment.json';
 
-import Recipe from './models/Recipe';
 import { routes } from './routes/route';
 //import getRoute from './routes/get';
 //import deleteRoute from './routes/delete';
@@ -27,8 +26,6 @@ app.use(cors({
 
 // Routes
 app.use('/', routes);
-//app.use('/', getRoute);
-//app.use('/', deleteRoute);
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URI)
