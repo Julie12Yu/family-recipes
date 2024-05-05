@@ -10,8 +10,9 @@
     margin-left: 5px;
 }
 
-.x-button{
-    border-radius: 20px;
+.remove-button{
+    margin-left: 10px;
+    border-radius: 5px;
     font-size: 10px;
     height: 30px;
 }

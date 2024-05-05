@@ -80,7 +80,7 @@ function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
                         {handleIngredientNameChange(e, i)}}/>
                     
                     <button onClick={(e) => {handleNewIngredient(e)}}>Add Ingredient</button>
-                    <button className='x-button' onClick={(e) => {deleteIngredient(e, i)}}>x</button>
+                    <button className='remove-button' onClick={(e) => {deleteIngredient(e, i)}}>REMOVE</button>
                 </form>
             </ul>);
             ingredientArr.push(element);
