@@ -23,6 +23,15 @@ function ViewRecipes() {
     fetchRecipes();
   }, []);
 
+
+  /*
+  --
+    Allows for adding an individual recipe by it's name.
+    Takes name from addName class constant.
+    Utilizes optimistic updates to add the recipe name to allRecipes.
+  --
+    e: React.FormEvent: The button press of the form.
+  */
   async function handlePost(e: React.FormEvent) {
     e.preventDefault();
     // optimistic update
@@ -32,6 +41,14 @@ function ViewRecipes() {
 
   }
 
+
+  /*
+  --
+    Allows for deleting individual recipe 'cards'.
+    Utilizes optimistic updates to remove the recipe name from allRecipes.
+  --
+    removeName: String: Name of recipe to be removed. Recipes should be unique
+  */
   async function handleDelete(removeName: string ) {
     await deleteRecipe(removeName);
     // optimistic update
@@ -43,7 +60,10 @@ function ViewRecipes() {
       <div className="makeRecipe">
         <ul className="recipes">
             {allRecipes.map((recipe) => (
-                <li key={recipe._id}><button onClick={() => {handleDelete(recipe.name)}}>x</button><Link to={`recipes/${recipe.name}`}>{recipe.name}</Link></li>
+                <li key={recipe._id}>
+                    <button onClick={() => {handleDelete(recipe.name)}}>x</button>
+                    <Link to={`recipes/${recipe.name}`}>{recipe.name}</Link>
+                </li>
             ))}
         </ul>
         <div>
