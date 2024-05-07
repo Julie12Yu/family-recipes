@@ -1,6 +1,6 @@
 import './MakeRecipe.css';
 import {useState} from 'react';
-import { TRecipe, getRecipes } from './api/getRecipes';
+import { TRecipe } from './api/getRecipes';
 import { Ingredient } from '../Ingredient';
 
 // preps callback function that lets us return to the ViewRecipes page
@@ -8,6 +8,7 @@ import { Ingredient } from '../Ingredient';
 interface CallBack {
     (): void;
 }
+
 interface MakeRecipeProps {
     returnToViewRecipe: CallBack;
 }
@@ -17,6 +18,7 @@ function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
     const [name, setName] = useState(recipe.name);
     const [instructions, setInstructions] = useState(recipe.instructions);
 
+    // TODO: Make this an API thing
     async function submitRecipe(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
         e.preventDefault();
         const requestData = { name: name, ingredients : ingredientList, instructions: instructions };
