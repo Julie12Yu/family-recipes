@@ -3,14 +3,22 @@ import {MouseEventHandler, useState} from 'react';
 import MakeRecipe from './components/MakeRecipe';
 import ViewRecipes from './components/ViewRecipes';
 import { handleLoginAPI } from './components/api/handleLoginAPI';
+import { TRecipe } from './components/api/getRecipes';
+import SingleRecipe from './components/SingleRecipe';
 
 type pages = "ViewRecipes" | "MakeRecipe" | "SignIn" | "SingleRecipe"; 
 function App() {
   const [page, setPage] = useState<pages>("SignIn");
   const [password, setPassword] = useState("");  
+  const [recipe, setRecentestRecipe] = useState<TRecipe>({name: "", ingredients: [], _id: "", instructions: ""});
 
   function returnToViewRecipe() {
     setPage("ViewRecipes");
+  }
+
+  function viewSingleRecipe(recipe: TRecipe) {
+    setPage("SingleRecipe");
+    setRecentestRecipe(recipe);
   }
 
   const handleLogin : MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -38,7 +46,7 @@ function App() {
     return ( //Add a readonly function here! Place it within "ViewRecipes" as a prop, and then modify each API call to check if readonly is true.
       <>
         <button className="navbarButton" onClick={() => setPage("MakeRecipe")}>New Recipe</button>
-        <ViewRecipes returnToViewRecipe={returnToViewRecipe}/>
+        <ViewRecipes returnToViewRecipe={returnToViewRecipe} viewSingleRecipe={viewSingleRecipe}/>
       </>
     )
   }
@@ -49,7 +57,15 @@ function App() {
         <MakeRecipe returnToViewRecipe={returnToViewRecipe}/>
       </>
     )
-  }  
+  } 
+  if (page == "SingleRecipe") {
+    return (
+      <>
+        <button className="navbarButton" onClick={() => setPage("ViewRecipes")}>Back</button>
+        <SingleRecipe recipe={recipe} />
+      </>
+    )
+  }
 }
 
 export default App

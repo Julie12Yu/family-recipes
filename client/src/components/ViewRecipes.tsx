@@ -9,7 +9,12 @@ interface CallBack {
   (): void;
 }
 
+interface CallBackWithInput {
+  (recipe: TRecipe): void;
+}
+
 interface ViewRecipesProps {
+  viewSingleRecipe: CallBackWithInput;
   returnToViewRecipe: CallBack;
 }
 
@@ -61,16 +66,34 @@ function ViewRecipes(props: ViewRecipesProps) {
     setRecipes(allRecipes.filter((recipe) => removeName !== recipe.name));
   }
 
+  const handleClickRecipe = (recipe: TRecipe) => {
+    props.viewSingleRecipe(recipe)
+  }
+  const renderRecipes = () : JSX.Element => {
+    const displayRecipes: JSX.Element[] = [];
+    for (let i: number = 0; i < allRecipes.length; i++) {
+        const recipe = allRecipes[i];
+        displayRecipes.push(<li key={i}>
+          <button className="delete-button" onClick={() => {confirm("Are you sure?"); handleDelete(recipe.name)}}>x</button>
+          <button onClick={() => handleClickRecipe(recipe)}>{recipe.name}</button>
+      </li>);
+    }
+    return (
+      <div className="makeRecipe">
+        <ul className="recipes">
+        <div>{displayRecipes}</div>
+        </ul>
+      </div>
+    )
+}
+
+
+
   return (
     <>
       <div className="makeRecipe">
         <ul className="recipes">
-            {allRecipes.map((recipe) => (
-                <li key={recipe._id}>
-                    <button onClick={() => {handleDelete(recipe.name)}}>x</button>
-                    {recipe.name}
-                </li>
-            ))}
+            {renderRecipes()}
         </ul>
         <div>
             <form className="addRecipe" onSubmit={handlePost}> 

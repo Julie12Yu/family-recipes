@@ -3,12 +3,14 @@ import {useState, useEffect} from 'react';
 import {Ingredient} from '../Ingredient';
 import { TRecipe } from './api/getRecipes';
 
+interface SingleRecipeProps {
+    recipe: TRecipe;
+  }
 
-
-function SingleRecipe(recipe: TRecipe) {
-    const name : string = recipe.name;
-    const ingredients: Ingredient[] = recipe.ingredients;
-    const instructions : string = recipe.instructions;
+function SingleRecipe(props: SingleRecipeProps) {
+    const name : string = props.recipe.name;
+    const ingredients: Ingredient[] = props.recipe.ingredients;
+    const instructions : string = props.recipe.instructions;
     // Array destructuring!
     // stateValue, dispatcher
   
@@ -19,17 +21,19 @@ function SingleRecipe(recipe: TRecipe) {
             const amount = ingredient.amount;
             const unit = ingredient.unit;
             const ingredientName = ingredient.ingredient;
-            displayIngredients.push(<div>Amount: {amount} | Unit: {unit} | Ingredient: {ingredientName}</div>);
+            displayIngredients.push(<div key={i}>Amount: {amount} | Unit: {unit} | Ingredient: {ingredientName}</div>);
         }
         return (
           <div>{displayIngredients}</div>
         )
-      }
+    }
 
     
   return (
     <>
-      {renderIngredients}
+      <h1>{name}</h1>
+      {renderIngredients()}
+      <p>{instructions}</p>
     </>
   )
   

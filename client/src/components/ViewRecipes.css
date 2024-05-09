@@ -30,7 +30,7 @@
     background: #eeee;
 }
 
-.recipes button {
+.delete-button {
     position: absolute;
     font-size: 10px;
     top: 5px;
