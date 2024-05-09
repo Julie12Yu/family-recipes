@@ -1,4 +1,4 @@
-import './ViewRecipes.css';
+import './SingleRecipe.css';
 import {useState, useEffect} from 'react';
 import {Ingredient} from '../../Ingredient';
 import { TRecipe } from '../api/getRecipes';
