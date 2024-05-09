@@ -1,6 +1,6 @@
 .recipes {
     display: grid;
-    width: 250px;
+    width: 225px;
     margin: 0 auto;
     grid-gap: 10px;
     color: black;
