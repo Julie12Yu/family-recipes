@@ -4,7 +4,7 @@ import MakeRecipe from './components/MakeRecipe';
 import ViewRecipes from './components/ViewRecipes';
 import { handleLoginAPI } from './components/api/handleLoginAPI';
 
-type pages = "ViewRecipes" | "MakeRecipe" | "SignIn"; 
+type pages = "ViewRecipes" | "MakeRecipe" | "SignIn" | "SingleRecipe"; 
 function App() {
   const [page, setPage] = useState<pages>("SignIn");
   const [password, setPassword] = useState("");  
@@ -38,7 +38,7 @@ function App() {
     return ( //Add a readonly function here! Place it within "ViewRecipes" as a prop, and then modify each API call to check if readonly is true.
       <>
         <button className="navbarButton" onClick={() => setPage("MakeRecipe")}>New Recipe</button>
-        <ViewRecipes/>
+        <ViewRecipes returnToViewRecipe={returnToViewRecipe}/>
       </>
     )
   }

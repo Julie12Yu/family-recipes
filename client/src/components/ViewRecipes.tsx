@@ -1,13 +1,19 @@
 import './ViewRecipes.css';
 import {useState, useEffect} from 'react';
 import {Ingredient} from '../Ingredient';
-import {Link} from "react-router-dom";
 import { deleteRecipe } from './api/deleteRecipe';
 import { editRecipe } from './api/editRecipe';
 import { TRecipe, getRecipes } from './api/getRecipes';
 
+interface CallBack {
+  (): void;
+}
 
-function ViewRecipes() {
+interface ViewRecipesProps {
+  returnToViewRecipe: CallBack;
+}
+
+function ViewRecipes(props: ViewRecipesProps) {
     // Array destructuring!
     // stateValue, dispatcher
   const [allRecipes, setRecipes] = useState<TRecipe []>([]);
@@ -62,7 +68,7 @@ function ViewRecipes() {
             {allRecipes.map((recipe) => (
                 <li key={recipe._id}>
                     <button onClick={() => {handleDelete(recipe.name)}}>x</button>
-                    <Link to={`recipes/${recipe.name}`}>{recipe.name}</Link>
+                    {recipe.name}
                 </li>
             ))}
         </ul>
