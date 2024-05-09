@@ -1,7 +1,7 @@
 import './ViewRecipes.css';
 import {useState, useEffect} from 'react';
-import {Ingredient} from '../Ingredient';
-import { TRecipe } from './api/getRecipes';
+import {Ingredient} from '../../Ingredient';
+import { TRecipe } from '../api/getRecipes';
 
 interface SingleRecipeProps {
     recipe: TRecipe;

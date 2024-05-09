@@ -1,10 +1,10 @@
 import './App.css'
 import {MouseEventHandler, useState} from 'react';
-import MakeRecipe from './components/MakeRecipe';
-import ViewRecipes from './components/ViewRecipes';
+import MakeRecipe from './components/MakeRecipe/MakeRecipe';
+import ViewRecipes from './components/ViewRecipes/ViewRecipes';
 import { handleLoginAPI } from './components/api/handleLoginAPI';
 import { TRecipe } from './components/api/getRecipes';
-import SingleRecipe from './components/SingleRecipe';
+import SingleRecipe from './components/SingleRecipe/SingleRecipe';
 
 type pages = "ViewRecipes" | "MakeRecipe" | "SignIn" | "SingleRecipe"; 
 function App() {

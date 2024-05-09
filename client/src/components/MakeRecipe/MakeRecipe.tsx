@@ -1,7 +1,7 @@
 import './MakeRecipe.css';
 import {useState} from 'react';
-import { TRecipe } from './api/getRecipes';
-import { Ingredient } from '../Ingredient';
+import { TRecipe } from '../api/getRecipes';
+import { Ingredient } from '../../Ingredient';
 
 // preps callback function that lets us return to the ViewRecipes page
 // preps type for callback function that allows us to swap page back, without abusing the 'button' usage that auto refreshes

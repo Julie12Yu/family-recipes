@@ -1,9 +1,9 @@
 import './ViewRecipes.css';
 import {useState, useEffect} from 'react';
-import {Ingredient} from '../Ingredient';
-import { deleteRecipe } from './api/deleteRecipe';
-import { editRecipe } from './api/editRecipe';
-import { TRecipe, getRecipes } from './api/getRecipes';
+import {Ingredient} from '../../Ingredient';
+import { deleteRecipe } from '../api/deleteRecipe';
+import { editRecipe } from '../api/editRecipe';
+import { TRecipe, getRecipes } from '../api/getRecipes';
 
 interface CallBack {
   (): void;
@@ -79,11 +79,10 @@ function ViewRecipes(props: ViewRecipesProps) {
       </li>);
     }
     return (
-      <div className="makeRecipe">
+    
         <ul className="recipes">
-        <div>{displayRecipes}</div>
+          <div>{displayRecipes}</div>
         </ul>
-      </div>
     )
 }
 
@@ -92,9 +91,7 @@ function ViewRecipes(props: ViewRecipesProps) {
   return (
     <>
       <div className="makeRecipe">
-        <ul className="recipes">
-            {renderRecipes()}
-        </ul>
+        {renderRecipes()}
         <div>
             <form className="addRecipe" onSubmit={handlePost}> 
                 <label htmlFor="recipe-name">Recipe Name</label> 
