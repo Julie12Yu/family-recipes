@@ -1,6 +1,5 @@
 import './ViewRecipes.css';
 import {useState, useEffect} from 'react';
-import {Ingredient} from '../../Ingredient';
 import { deleteRecipe } from '../api/deleteRecipe';
 import { editRecipe } from '../api/editRecipe';
 import { TRecipe, getRecipes } from '../api/getRecipes';
@@ -73,15 +72,17 @@ function ViewRecipes(props: ViewRecipesProps) {
     const displayRecipes: JSX.Element[] = [];
     for (let i: number = 0; i < allRecipes.length; i++) {
         const recipe = allRecipes[i];
-        displayRecipes.push(<li key={i}>
+        displayRecipes.push(
+        <li key={i}>
           <button className="delete-button" onClick={() => {confirm("Are you sure?"); handleDelete(recipe.name)}}>x</button>
           <button onClick={() => handleClickRecipe(recipe)}>{recipe.name}</button>
-      </li>);
+        </li>
+        );
     }
     return (
     
         <ul className="recipes">
-          <div>{displayRecipes}</div>
+          {displayRecipes}
         </ul>
     )
 }
@@ -90,20 +91,9 @@ function ViewRecipes(props: ViewRecipesProps) {
 
   return (
     <>
-      <div className="makeRecipe">
+
         {renderRecipes()}
-        <div>
-            <form className="addRecipe" onSubmit={handlePost}> 
-                <label htmlFor="recipe-name">Recipe Name</label> 
-                <input 
-                    id="recipe-name" // if we click on name, it auto-leads to the text box
-                    value={addName} // this allows react to have the text box show our changes
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                    {setName(e.target.value)}}/>
-                <button>Add Recipe</button>
-            </form>
-        </div>
-      </div>
+
     </>
   )
   

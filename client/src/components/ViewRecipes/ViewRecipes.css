@@ -1,16 +1,14 @@
-.makeRecipe {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .recipes {
     display: grid;
-    width: 600px;
+    width: 250px;
     margin: 0 auto;
     grid-gap: 10px;
-    grid-template-columns: repeat(3, 1fr);
     color: black;
+}
+
+.recipes ul {
+    display: inline;
+    align-items: center;
 }
 
 .recipes li {
@@ -38,18 +36,4 @@
     right: 5px;
     background-color: white;
     border: 1px solid black;
-}
-
-.addRecipe {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
-.deleteRecipe {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
 }
