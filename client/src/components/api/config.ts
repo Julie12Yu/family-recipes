@@ -1,1 +1,1 @@
-export const API_URL = "http://localhost:8000";
+export const API_URL = "https://family-recipes-server-ojm3e46t7-julie12yus-projects.vercel.app/";

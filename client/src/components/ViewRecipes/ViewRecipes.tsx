@@ -41,7 +41,7 @@ function ViewRecipes(props: ViewRecipesProps) {
     Utilizes optimistic updates to add the recipe name to allRecipes.
   --
     e: React.FormEvent: The button press of the form.
-  */
+  *//*
   async function handlePost(e: React.FormEvent) {
     e.preventDefault();
     // optimistic update
@@ -49,7 +49,7 @@ function ViewRecipes(props: ViewRecipesProps) {
     setRecipes([...allRecipes, recipe]);
     setName('');
 
-  }
+  }*/
 
 
   /*
