@@ -11,7 +11,7 @@ import { routes } from './routes/route';
 const app = express();
 
 const MONGO_URI = env.MONGO_URI || '';
-const PORT = env.PORT || 8000;
+const PORT = env.BACKEND.PORT || 8000;
 
 // Middleware
 app.use(bodyParser.json());
