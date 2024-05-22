@@ -24,6 +24,7 @@ app.use(cors({
   origin: '*',
 }));
 
+
 // Routes
 app.use('/', routes);
 

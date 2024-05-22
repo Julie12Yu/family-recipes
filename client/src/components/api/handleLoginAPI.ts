@@ -22,7 +22,5 @@ export async function handleLoginAPI(password: string, returnToViewRecipe: CallB
         'Content-Type': 'application/json',
       }}).then(handleLoginResponse)
     .catch((e) => {console.log(e.message)})
-
-    
 }
 
