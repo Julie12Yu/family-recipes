@@ -15,8 +15,5 @@
           "Access-Control-Allow-Origin": "*"
         }
       }
-    ],
-    "rewrites": [
-      
     ]
 }
