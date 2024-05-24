@@ -24,6 +24,9 @@ app.use(cors({
   origin: '*',
 }));
 
+app.use("/", (req,res) => {
+  res.send("help me help me help me next.js next time yay");
+});
 
 // Routes
 app.use('/', routes);
