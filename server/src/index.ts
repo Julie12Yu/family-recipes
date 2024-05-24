@@ -2,16 +2,16 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import env from '../environment.json';
-
+//import env from '..json';
+require('dotenv').config()
 import { routes } from './routes/route';
 //import getRoute from './routes/get';
 //import deleteRoute from './routes/delete';
 
 const app = express();
 
-const MONGO_URI = env.MONGO_URI || '';
-const PORT = env.BACKEND.PORT || 8000;
+const MONGO_URI = process.env.MONGO_URI || '';
+const PORT = process.env.PORT || 8000;
 
 // Middleware
 app.use(bodyParser.json());
