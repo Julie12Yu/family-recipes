@@ -1,7 +1,7 @@
 import './ViewRecipes.css';
 import {useState, useEffect} from 'react';
 import { deleteRecipe } from '../api/deleteRecipe';
-import { editRecipe } from '../api/editRecipe';
+//import { editRecipe } from '../api/editRecipe';
 import { TRecipe, getRecipes } from '../api/getRecipes';
 
 interface CallBack {
@@ -21,7 +21,7 @@ function ViewRecipes(props: ViewRecipesProps) {
     // Array destructuring!
     // stateValue, dispatcher
   const [allRecipes, setRecipes] = useState<TRecipe []>([]);
-  const [addName, setName] = useState('');
+  //const [addName, setName] = useState('');
 
   // empty dependency array: only runs when mounts and demounts
   // can't use async await
