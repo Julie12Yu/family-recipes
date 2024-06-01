@@ -74,7 +74,7 @@ function ViewRecipes(props: ViewRecipesProps) {
         const recipe = allRecipes[i];
         displayRecipes.push(
         <li key={i}>
-          <button className="delete-button" onClick={() => {if (confirm("Are you sure?")) { handleDelete(recipe.name)}}}>x</button>
+          <button className="delete-button" onClick={() => {if (confirm("Are you sure?")){handleDelete(recipe.name);}}}>x</button>
           <button onClick={() => handleClickRecipe(recipe)}>{recipe.name}</button>
         </li>
         );
