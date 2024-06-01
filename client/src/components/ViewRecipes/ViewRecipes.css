@@ -1,14 +1,16 @@
 .recipes {
     display: grid;
-    width: 225px;
+    width: 600px;
     margin: 0 auto;
-    grid-gap: 10px;
+    grid-gap: 7.5px;
+    grid-template-columns: repeat(3, 1fr);
     color: black;
 }
 
 .recipes ul {
-    display: inline;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .recipes li {
