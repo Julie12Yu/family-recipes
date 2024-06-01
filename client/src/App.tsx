@@ -31,7 +31,8 @@ function App() {
     return (
       <>
         <form>
-          <label>Password:</label>
+          <h2>Store Recipes Here</h2>
+          <label>Password: </label>
           <input 
               id="password" 
               value={password} 
