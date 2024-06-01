@@ -1,3 +1,5 @@
 environment.json
 node_modules
 .vercel
+
+.env
