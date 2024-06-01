@@ -8,6 +8,7 @@
 .input{
     margin-right: 20px;
     margin-left: 5px;
+    white-space: pre-line;
 }
 
 .remove-button{

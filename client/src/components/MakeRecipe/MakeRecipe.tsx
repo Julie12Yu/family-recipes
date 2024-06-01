@@ -56,6 +56,14 @@ function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
             const element = (
             <ul key={i}>
                 <form className='ingredient' > 
+                    <input 
+                        className='input'
+                        key={i}
+                        id="ingredient-amount" // if we click on name, it auto-leads to the text box
+                        value={ingredientList[i].amount} // this allows react to have the text box show our changes
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                        {handleIngredientAmountChange(e, i)}}/>
+                    <label htmlFor="ingredient-name">Ingredient:</label> 
                     <label htmlFor="ingredient-unit">Unit:</label> 
                     <input 
                         className='input'
@@ -65,14 +73,6 @@ function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                         {handleIngredientUnitChange(e, i)}}/>
                     <label htmlFor="ingredient-amount">Amount:</label> 
-                    <input 
-                        className='input'
-                        key={i}
-                        id="ingredient-amount" // if we click on name, it auto-leads to the text box
-                        value={ingredientList[i].amount} // this allows react to have the text box show our changes
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                        {handleIngredientAmountChange(e, i)}}/>
-                    <label htmlFor="ingredient-name">Ingredient:</label> 
                     <input 
                         className='input'
                         key={i+10}
