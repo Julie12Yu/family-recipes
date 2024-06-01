@@ -22,7 +22,7 @@ function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
     async function submitRecipe(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
         e.preventDefault();
         const requestData = { name: name, ingredients : ingredientList, instructions: instructions };
-        await fetch('http://localhost:8000/put', {
+        await fetch('https://family-recipes-nu.vercel.app/put', {
           method: 'PUT',
           body: JSON.stringify(requestData),
           headers: { // headers let us tell a lot of things
