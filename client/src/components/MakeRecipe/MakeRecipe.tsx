@@ -111,7 +111,6 @@ function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
         setIngredientList(newList);
     }
 
-
     return (
         <>
             <form className="addRecipe"> 

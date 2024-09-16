@@ -1,8 +1,14 @@
 import './ViewRecipes.css';
 import {useState, useEffect} from 'react';
 import { deleteRecipe } from '../api/deleteRecipe';
-//import { editRecipe } from '../api/editRecipe';
 import { TRecipe, getRecipes } from '../api/getRecipes';
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardActions from '@mui/material/CardActions';
 
 interface CallBack {
   (): void;
@@ -21,7 +27,6 @@ function ViewRecipes(props: ViewRecipesProps) {
     // Array destructuring!
     // stateValue, dispatcher
   const [allRecipes, setRecipes] = useState<TRecipe []>([]);
-  //const [addName, setName] = useState('');
 
   // empty dependency array: only runs when mounts and demounts
   // can't use async await
@@ -32,24 +37,6 @@ function ViewRecipes(props: ViewRecipesProps) {
     }
     fetchRecipes();
   }, []);
-
-
-  /*
-  --
-    Allows for adding an individual recipe by it's name.
-    Takes name from addName class constant.
-    Utilizes optimistic updates to add the recipe name to allRecipes.
-  --
-    e: React.FormEvent: The button press of the form.
-  *//*
-  async function handlePost(e: React.FormEvent) {
-    e.preventDefault();
-    // optimistic update
-    const recipe = await editRecipe(addName);
-    setRecipes([...allRecipes, recipe]);
-    setName('');
-
-  }*/
 
 
   /*
@@ -68,32 +55,43 @@ function ViewRecipes(props: ViewRecipesProps) {
   const handleClickRecipe = (recipe: TRecipe) => {
     props.viewSingleRecipe(recipe)
   }
-  const renderRecipes = () : JSX.Element => {
+
+  const renderRecipesBetter = () : JSX.Element => {
     const displayRecipes: JSX.Element[] = [];
     for (let i: number = 0; i < allRecipes.length; i++) {
-        const recipe = allRecipes[i];
-        displayRecipes.push(
-        <li key={i}>
-          <button className="delete-button" onClick={() => {if (confirm("Are you sure?")){handleDelete(recipe.name);}}}>x</button>
-          <button onClick={() => handleClickRecipe(recipe)}>{recipe.name}</button>
-        </li>
-        );
+      const recipe = allRecipes[i];
+      displayRecipes.push(
+        <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+          <CardActionArea onClick={() => handleClickRecipe(recipe)}>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div" sx={{ fontSize: '16px', marginBottom: '0px' }}>
+                {recipe.name}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions sx={{ mt: 'auto', justifyContent: 'space-between', paddingTop: '0px'}}>
+            <Button size="small" color="primary" onClick={() => {if (confirm("Are you sure?")){handleDelete(recipe.name);}}}>
+              Delete
+            </Button>
+            <Button size="small" color="primary" onClick={() => handleClickRecipe(recipe)}>
+              Share
+            </Button>
+          </CardActions>
+        </Card>
+      )
     }
     return (
-    
-        <ul className="recipes">
-          {displayRecipes}
-        </ul>
+      <ul className="recipes">
+        {displayRecipes}
+      </ul>
     )
-}
+  }
 
 
 
   return (
     <>
-
-        {renderRecipes()}
-
+        {renderRecipesBetter()}
     </>
   )
   
