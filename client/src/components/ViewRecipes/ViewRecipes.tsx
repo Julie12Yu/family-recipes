@@ -60,20 +60,20 @@ function ViewRecipes(props: ViewRecipesProps) {
     for (let i = 0; i < allRecipes.length; i++) {
       const recipe = allRecipes[i];
       displayRecipes.push(
-        <Card sx={{ maxWidth: 345 }} key={i}>
+        <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'} } key={i}>
           <CardActionArea onClick={() => handleClickRecipe(recipe)}>
             <CardContent>
-              <Typography gutterBottom variant="h6" component="div">
+              <Typography gutterBottom variant="h6" component="div" sx={{ fontSize: '16px', marginBottom: '0px' }}>
                 {recipe.name}
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions>
+          <CardActions sx={{ mt: 'auto', justifyContent: 'space-between', paddingTop: '0px'}}>
             <Button size="small" color="primary" onClick={() => { if (confirm("Are you sure?")) { handleDelete(recipe.name); } }}>
               Delete
             </Button>
             <Button size="small" color="primary" onClick={() => props.editRecipe(recipe)}>
-              Share
+              Edit
             </Button>
           </CardActions>
         </Card>
