@@ -21,6 +21,11 @@ function App() {
     setRecentestRecipe(recipe);
   }
 
+  function editRecipe(recipe: TRecipe) {
+    setRecentestRecipe(recipe);
+    setPage("MakeRecipe");
+  }
+
   const handleLogin : MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     // just passes in the callback function! does not need special typing here
@@ -47,7 +52,7 @@ function App() {
     return ( //Add a readonly function here! Place it within "ViewRecipes" as a prop, and then modify each API call to check if readonly is true.
       <>
         <button className="navbarButton" onClick={() => setPage("MakeRecipe")}>New Recipe</button>
-        <ViewRecipes returnToViewRecipe={returnToViewRecipe} viewSingleRecipe={viewSingleRecipe}/>
+        <ViewRecipes returnToViewRecipe={returnToViewRecipe} viewSingleRecipe={viewSingleRecipe} editRecipe={editRecipe}/>
       </>
     )
   }
@@ -55,7 +60,7 @@ function App() {
     return (
       <>
         <button className="navbarButton" onClick={() => setPage("ViewRecipes")}>Back</button>
-        <MakeRecipe returnToViewRecipe={returnToViewRecipe}/>
+        <MakeRecipe returnToViewRecipe={returnToViewRecipe} prevRecipe={recipe}/>
       </>
     )
   } 

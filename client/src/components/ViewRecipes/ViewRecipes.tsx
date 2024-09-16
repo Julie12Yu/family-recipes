@@ -20,6 +20,7 @@ interface CallBackWithInput {
 interface ViewRecipesProps {
   viewSingleRecipe: CallBackWithInput;
   returnToViewRecipe: CallBack;
+  editRecipe: CallBackWithInput;
 }
 
 function ViewRecipes(props: ViewRecipesProps) {
@@ -36,7 +37,6 @@ function ViewRecipes(props: ViewRecipesProps) {
     }
     fetchRecipes();
   }, []);
-
 
   /*
   --
@@ -55,36 +55,32 @@ function ViewRecipes(props: ViewRecipesProps) {
     props.viewSingleRecipe(recipe)
   }
 
-  const renderRecipesBetter = () : JSX.Element => {
+  const renderRecipesBetter = (): JSX.Element => {
     const displayRecipes: JSX.Element[] = [];
-    for (let i: number = 0; i < allRecipes.length; i++) {
+    for (let i = 0; i < allRecipes.length; i++) {
       const recipe = allRecipes[i];
       displayRecipes.push(
-        <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+        <Card sx={{ maxWidth: 345 }} key={i}>
           <CardActionArea onClick={() => handleClickRecipe(recipe)}>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div" sx={{ fontSize: '16px', marginBottom: '0px' }}>
+              <Typography gutterBottom variant="h6" component="div">
                 {recipe.name}
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions sx={{ mt: 'auto', justifyContent: 'space-between', paddingTop: '0px'}}>
-            <Button size="small" color="primary" onClick={() => {if (confirm("Are you sure?")){handleDelete(recipe.name);}}}>
+          <CardActions>
+            <Button size="small" color="primary" onClick={() => { if (confirm("Are you sure?")) { handleDelete(recipe.name); } }}>
               Delete
             </Button>
-            <Button size="small" color="primary" onClick={() => handleClickRecipe(recipe)}>
+            <Button size="small" color="primary" onClick={() => props.editRecipe(recipe)}>
               Share
             </Button>
           </CardActions>
         </Card>
-      )
+      );
     }
-    return (
-      <ul className="recipes">
-        {displayRecipes}
-      </ul>
-    )
-  }
+    return <ul className="recipes">{displayRecipes}</ul>;
+  };
 
 
 

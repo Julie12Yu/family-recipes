@@ -11,12 +11,13 @@ interface CallBack {
 
 interface MakeRecipeProps {
     returnToViewRecipe: CallBack;
+    prevRecipe?: TRecipe;
 }
 
-function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
-    const [ingredientList, setIngredientList] = useState<Ingredient[]>([{amount: "", unit: "", ingredient: ""}]);
-    const [name, setName] = useState(recipe.name);
-    const [instructions, setInstructions] = useState(recipe.instructions);
+function MakeRecipe(props: MakeRecipeProps) {
+    const [ingredientList, setIngredientList] = useState<Ingredient[]>(props.prevRecipe?.ingredients || []);
+    const [name, setName] = useState(props.prevRecipe?.name || "");
+    const [instructions, setInstructions] = useState(props.prevRecipe?.instructions || "");
 
     // TODO: Make this an API thing
     async function submitRecipe(e: React.MouseEvent<HTMLButtonElement, MouseEvent> ) {
@@ -136,7 +137,7 @@ function MakeRecipe(props: MakeRecipeProps, recipe: TRecipe) {
                     
             </form>
             <form>
-                <button onClick={(e) => {submitRecipe(e)}}>Submit Recipe</button>
+                <button onClick={(e) => {submitRecipe(e)}}>Save Recipe</button>
             </form>
         </>
     )
