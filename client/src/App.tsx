@@ -10,10 +10,11 @@ type pages = "ViewRecipes" | "MakeRecipe" | "SignIn" | "SingleRecipe";
 function App() {
   const [page, setPage] = useState<pages>("SignIn");
   const [password, setPassword] = useState("");  
-  const [recipe, setRecentestRecipe] = useState<TRecipe>({name: "", ingredients: [], _id: "", instructions: ""});
+  const [recipe, setRecentestRecipe] = useState<TRecipe>({name: "", ingredients: [{amount: "", unit: "", ingredient: ""}], _id: "", instructions: ""});
 
   function returnToViewRecipe() {
     setPage("ViewRecipes");
+    resetRecipe();
   }
 
   function viewSingleRecipe(recipe: TRecipe) {
@@ -24,6 +25,10 @@ function App() {
   function editRecipe(recipe: TRecipe) {
     setRecentestRecipe(recipe);
     setPage("MakeRecipe");
+  }
+
+  function resetRecipe() {
+    setRecentestRecipe({name: "", ingredients: [{amount: "", unit: "", ingredient: ""}], _id: "", instructions: ""});
   }
 
   const handleLogin : MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -59,7 +64,7 @@ function App() {
   if (page == "MakeRecipe") {
     return (
       <>
-        <button className="navbarButton" onClick={() => setPage("ViewRecipes")}>Back</button>
+        <button className="navbarButton" onClick={() => {setPage("ViewRecipes"); resetRecipe()}}>Back</button>
         <MakeRecipe returnToViewRecipe={returnToViewRecipe} prevRecipe={recipe}/>
       </>
     )

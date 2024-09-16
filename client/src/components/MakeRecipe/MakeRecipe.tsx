@@ -15,7 +15,7 @@ interface MakeRecipeProps {
 }
 
 function MakeRecipe(props: MakeRecipeProps) {
-    const [ingredientList, setIngredientList] = useState<Ingredient[]>(props.prevRecipe?.ingredients || []);
+    const [ingredientList, setIngredientList] = useState<Ingredient[]>(props.prevRecipe?.ingredients || [{amount: "", unit: "", ingredient: ""}]);
     const [name, setName] = useState(props.prevRecipe?.name || "");
     const [instructions, setInstructions] = useState(props.prevRecipe?.instructions || "");
 
