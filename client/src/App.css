@@ -17,3 +17,22 @@
   font-weight: bold; 
   cursor: pointer;
 }
+
+.recipes-wrapper {
+  position: absolute;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-55%);
+  width: 600px;
+}
+
+
+.header {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}

@@ -86,7 +86,6 @@ function ViewRecipes(props: ViewRecipesProps) {
 
   return (
     <>
-    <h1 className="header">Recipes</h1>
         {renderRecipesBetter()}
     </>
   )

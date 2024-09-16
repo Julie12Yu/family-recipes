@@ -57,7 +57,10 @@ function App() {
     return ( //Add a readonly function here! Place it within "ViewRecipes" as a prop, and then modify each API call to check if readonly is true.
       <>
         <button className="navbarButton" onClick={() => setPage("MakeRecipe")}>New Recipe</button>
-        <ViewRecipes returnToViewRecipe={returnToViewRecipe} viewSingleRecipe={viewSingleRecipe} editRecipe={editRecipe}/>
+        <h1 className="header">Recipes</h1>
+        <div className="recipes-wrapper">
+          <ViewRecipes returnToViewRecipe={returnToViewRecipe} viewSingleRecipe={viewSingleRecipe} editRecipe={editRecipe}/>
+        </div>
       </>
     )
   }
