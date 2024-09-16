@@ -2,6 +2,7 @@ import './MakeRecipe.css';
 import {useState} from 'react';
 import { TRecipe } from '../api/getRecipes';
 import { Ingredient } from '../../Ingredient';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // preps callback function that lets us return to the ViewRecipes page
 // preps type for callback function that allows us to swap page back, without abusing the 'button' usage that auto refreshes
@@ -85,7 +86,11 @@ function MakeRecipe(props: MakeRecipeProps) {
                         {handleIngredientNameChange(e, i)}}/>
                     
                     <button onClick={(e) => {handleNewIngredient(e)}}>Add Ingredient</button>
-                    <button className='remove-button' onClick={(e) => {deleteIngredient(e, i)}}>REMOVE</button>
+                    <button className="remove-button" onClick={(e) => deleteIngredient(e, i)}>
+                        <DeleteIcon />
+                    </button>
+
+
                 </form>
             </ul>);
             ingredientArr.push(element);
@@ -115,7 +120,7 @@ function MakeRecipe(props: MakeRecipeProps) {
     return (
         <>
             <form className="addRecipe"> 
-                <label htmlFor="recipe-name">Recipe Name</label> 
+                <label htmlFor="recipe-name">Recipe Name: </label> 
                 <input 
                     id="recipe-name"
                     value={name}
