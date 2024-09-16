@@ -2,7 +2,6 @@ import './ViewRecipes.css';
 import {useState, useEffect} from 'react';
 import { deleteRecipe } from '../api/deleteRecipe';
 import { TRecipe, getRecipes } from '../api/getRecipes';
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
